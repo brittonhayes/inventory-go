@@ -1,0 +1,2 @@
+Makefile linguist-vendored
+*.sh linguist-vendored

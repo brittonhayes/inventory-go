@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: changemerightaway
+    ports:
+      - 5432:5432
+
+  inventory:
+    build: .
+    ports:
+      - 8000:8000
+      - 9000:9000
+    environment:
+      INVENTORY_DATABASE_URL: postgres://postgres:changemerightaway@db/postgres?sslmode=disable
+    volumes:
+      - ./config:/data/config
+    depends_on:
+      - "db"
